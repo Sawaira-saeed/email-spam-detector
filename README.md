@@ -166,7 +166,7 @@ email-spam-detector/
 ## 🚀 Installation Instructions
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/email-spam-detector.git
+git clone https://github.com/Sawaira-saeed/email-spam-detector.git
 cd email-spam-detector
 
 python -m venv .venv
@@ -196,12 +196,12 @@ The application will:
 
 2. Clone the Space and copy project files:
    ```bash
-   git clone https://huggingface.co/spaces/YOUR_USERNAME/email-spam-detector
+   git clone https://huggingface.co/spaces/Sawaira-saeed/email-spam-detector
    # Copy all project files (except .venv/ and tests/)
    git add . && git commit -m "Deploy" && git push
    ```
 
-3. Access at `https://YOUR_USERNAME-email-spam-detector.hf.space`
+3. Access at `https://Sawaira-saeed-email-spam-detector.hf.space`
 
 ## 📝 Sample Input and Output
 
