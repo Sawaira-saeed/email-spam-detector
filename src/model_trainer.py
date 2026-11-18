@@ -1,13 +1,4 @@
-"""
-Model training, evaluation, and persistence for spam detection.
-
-Trains and compares:
-    1. Multinomial Naive Bayes
-    2. Logistic Regression
-
-Selects the best model by F1-score on the test set.
-Saves the model + TF-IDF vectorizer with joblib.
-"""
+"""Model training, evaluation, and persistence for spam detection."""
 
 from __future__ import annotations
 
@@ -46,7 +37,7 @@ RANDOM_SEED = 42
 
 @dataclass
 class ModelMetrics:
-    """Evaluation metrics for a trained model."""
+
 
     model_name: str
     accuracy: float
@@ -59,7 +50,7 @@ class ModelMetrics:
 
 @dataclass
 class TrainingResult:
-    """Container for training output."""
+
 
     best_model_name: str
     best_metrics: ModelMetrics
@@ -70,15 +61,7 @@ class TrainingResult:
 
 
 def train_and_evaluate(df: pd.DataFrame) -> TrainingResult:
-    """
-    Train both models, evaluate, and return the best one.
 
-    Args:
-        df: DataFrame with 'label' and 'message' columns.
-
-    Returns:
-        TrainingResult containing the best model, vectorizer, and metrics.
-    """
     MODELS_DIR.mkdir(parents=True, exist_ok=True)
 
     df = df.copy()
@@ -165,15 +148,7 @@ def train_and_evaluate(df: pd.DataFrame) -> TrainingResult:
 
 
 def load_saved_model() -> tuple[object, TfidfVectorizer, ModelMetrics]:
-    """
-    Load a previously trained model from disk.
 
-    Returns:
-        (model, vectorizer, metrics)
-
-    Raises:
-        FileNotFoundError if model files don't exist.
-    """
     if not MODEL_FILE.exists() or not VECTORIZER_FILE.exists():
         raise FileNotFoundError(
             "Trained model not found. Please train the model first."
@@ -191,17 +166,7 @@ def predict_message(
     model: object,
     vectorizer: TfidfVectorizer,
 ) -> dict:
-    """
-    Classify a single message as spam or ham.
 
-    Args:
-        text: Raw message string.
-        model: Trained classifier.
-        vectorizer: Fitted TF-IDF vectorizer.
-
-    Returns:
-        Dict with keys: label, confidence, spam_probability, ham_probability.
-    """
     cleaned = preprocess_text(text)
     if not cleaned:
         return {
@@ -238,17 +203,7 @@ def get_top_features(
     vectorizer: TfidfVectorizer,
     top_n: int = 15,
 ) -> dict[str, list[tuple[str, float]]]:
-    """
-    Extract the most important words for each class.
 
-    Args:
-        model: Trained classifier (must have coef_ or feature_log_prob_).
-        vectorizer: Fitted TF-IDF vectorizer.
-        top_n: Number of top features to return per class.
-
-    Returns:
-        Dict with 'spam' and 'ham' keys, each a list of (word, weight) tuples.
-    """
     feature_names = vectorizer.get_feature_names_out()
 
     if hasattr(model, "coef_"):

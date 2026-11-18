@@ -1,17 +1,4 @@
-"""
-Text preprocessing for spam detection.
-
-Steps:
-    1. Lowercasing
-    2. URL replacement
-    3. Email address replacement
-    4. Phone number replacement
-    5. Currency symbol replacement
-    6. Punctuation removal
-    7. Digit removal (optional)
-    8. Stopword removal (optional)
-    9. Whitespace normalization
-"""
+"""Text preprocessing for spam detection."""
 
 from __future__ import annotations
 
@@ -25,7 +12,7 @@ _NLTK_DOWNLOADED = False
 
 
 def _ensure_nltk_data() -> None:
-    """Download required NLTK data (stopwords) if not already present."""
+
     global _NLTK_DOWNLOADED
     if _NLTK_DOWNLOADED:
         return
@@ -41,17 +28,7 @@ def preprocess_text(
     remove_stopwords: bool = True,
     remove_digits: bool = True,
 ) -> str:
-    """
-    Clean and normalize a single SMS/email message.
 
-    Args:
-        text: Raw message string.
-        remove_stopwords: Whether to remove English stopwords.
-        remove_digits: Whether to remove standalone digits.
-
-    Returns:
-        Cleaned text string.
-    """
     if text is None:
         return ""
 
@@ -80,12 +57,7 @@ def preprocess_text(
 
 
 def validate_message(text: str, min_length: int = 1, max_length: int = 5000) -> tuple[bool, str]:
-    """
-    Validate an email/SMS message before classification.
 
-    Returns:
-        (is_valid, error_message)
-    """
     if text is None or not str(text).strip():
         return False, "Message is empty. Please enter a message to classify."
 

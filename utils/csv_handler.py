@@ -1,6 +1,4 @@
-"""
-CSV batch processing for spam detector.
-"""
+"""CSV batch processing for spam detector."""
 
 from __future__ import annotations
 
@@ -19,21 +17,7 @@ def process_csv_batch(
     vectorizer,
     text_column: Optional[str] = None,
 ) -> pd.DataFrame:
-    """
-    Process a CSV of messages and classify each as spam or ham.
 
-    Args:
-        file_obj: File-like object.
-        model: Trained classifier.
-        vectorizer: Fitted TF-IDF vectorizer.
-        text_column: Column name with messages. Auto-detected if None.
-
-    Returns:
-        DataFrame with message, prediction, spam_probability columns.
-
-    Raises:
-        ValueError on invalid input.
-    """
     try:
         df = pd.read_csv(file_obj)
     except Exception as exc:
@@ -74,7 +58,7 @@ def process_csv_batch(
 
 
 def dataframe_to_csv_bytes(df: pd.DataFrame) -> bytes:
-    """Convert DataFrame to CSV bytes for download."""
+
     buffer = io.StringIO()
     df.to_csv(buffer, index=False)
     return buffer.getvalue().encode("utf-8")

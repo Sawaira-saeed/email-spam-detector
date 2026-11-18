@@ -1,12 +1,4 @@
-"""
-Email Spam Detector — Streamlit Application
-============================================
-
-An NLP + Machine Learning application that classifies SMS/email messages
-as SPAM or HAM (not spam) using TF-IDF features and classical ML models.
-
-Author: AI-NLP-Portfolio
-"""
+"""Email Spam Detector — Streamlit Application."""
 
 from __future__ import annotations
 
@@ -105,7 +97,7 @@ EXAMPLE_MESSAGES = [
 
 @st.cache_resource
 def get_trained_model() -> tuple[object, object, ModelMetrics, TrainingResult]:
-    """Load dataset, train models, and cache the result."""
+
     df = load_dataset()
     result = train_and_evaluate(df)
     return result.best_model, result.vectorizer, result.best_metrics, result

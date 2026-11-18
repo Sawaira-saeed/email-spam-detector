@@ -260,7 +260,7 @@ Run `streamlit run app.py` and capture:
 
 ## 👤 Author
 
-**AI-NLP-Portfolio** — Built for professional AI/ML portfolio showcase.
+**Sawaira Saeed**
 
 ---
 

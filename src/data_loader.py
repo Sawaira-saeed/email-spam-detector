@@ -1,10 +1,4 @@
-"""
-Dataset loader for the SMS Spam Collection dataset.
-
-Primary source: UCI Machine Learning Repository
-Fallback: GitHub mirror of the same dataset
-Last resort: Bundled minimal sample for testing
-"""
+"""Dataset loader for the SMS Spam Collection dataset."""
 
 from __future__ import annotations
 
@@ -80,14 +74,7 @@ SAMPLE_DATA = [
 
 
 def download_dataset() -> bool:
-    """
-    Attempt to download the SMS Spam Collection dataset.
 
-    Tries UCI first, then a GitHub mirror. Saves to data/spam.csv.
-
-    Returns:
-        True if download succeeded, False otherwise.
-    """
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
     sources = [
@@ -129,18 +116,7 @@ def download_dataset() -> bool:
 
 
 def load_dataset() -> pd.DataFrame:
-    """
-    Load the SMS Spam dataset.
 
-    Order of preference:
-        1. Cached file at data/spam.csv
-        2. Download from UCI / GitHub
-        3. Bundled sample data
-
-    Returns:
-        DataFrame with columns ['label', 'message'].
-        label is 'ham' or 'spam'.
-    """
     if DATA_FILE.exists():
         try:
             df = pd.read_csv(DATA_FILE, encoding="utf-8")

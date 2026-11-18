@@ -1,6 +1,4 @@
-"""
-Visualization utilities for spam detector using Matplotlib and Seaborn.
-"""
+"""Visualization utilities for spam detector using Matplotlib and Seaborn."""
 
 from __future__ import annotations
 
@@ -13,15 +11,7 @@ from matplotlib.figure import Figure
 
 
 def plot_confusion_matrix(cm: list[list[int]]) -> Figure:
-    """
-    Render a confusion matrix heatmap.
 
-    Args:
-        cm: 2x2 confusion matrix [[TN, FP], [FN, TP]].
-
-    Returns:
-        Matplotlib Figure.
-    """
     fig, ax = plt.subplots(figsize=(6, 5))
     sns.heatmap(
         cm,
@@ -41,15 +31,7 @@ def plot_confusion_matrix(cm: list[list[int]]) -> Figure:
 
 
 def plot_model_comparison(metrics_dict: dict) -> Figure:
-    """
-    Compare accuracy, precision, recall, and F1 across models.
 
-    Args:
-        metrics_dict: Dict of model_name -> ModelMetrics.
-
-    Returns:
-        Matplotlib Figure.
-    """
     names = list(metrics_dict.keys())
     metrics = ["accuracy", "precision", "recall", "f1_score"]
     metric_labels = ["Accuracy", "Precision", "Recall", "F1-Score"]
@@ -93,16 +75,7 @@ def plot_model_comparison(metrics_dict: dict) -> Figure:
 
 
 def plot_prediction_probability(spam_prob: float, ham_prob: float) -> Figure:
-    """
-    Horizontal bar chart showing spam vs ham probability.
 
-    Args:
-        spam_prob: Probability of spam (0–1).
-        ham_prob: Probability of ham (0–1).
-
-    Returns:
-        Matplotlib Figure.
-    """
     fig, ax = plt.subplots(figsize=(8, 2.5))
     labels = ["HAM (Not Spam)", "SPAM"]
     values = [ham_prob * 100, spam_prob * 100]
@@ -129,15 +102,7 @@ def plot_prediction_probability(spam_prob: float, ham_prob: float) -> Figure:
 
 
 def plot_top_features(features: dict[str, list[tuple[str, float]]]) -> Figure:
-    """
-    Bar chart of top spam-indicating words.
 
-    Args:
-        features: Dict with 'spam' and 'ham' lists of (word, weight).
-
-    Returns:
-        Matplotlib Figure.
-    """
     spam_words = features.get("spam", [])[:10]
     if not spam_words:
         fig, ax = plt.subplots(figsize=(8, 4))
